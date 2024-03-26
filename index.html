@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      @font-face {
+        font-family: "SB Aggro";
+        src: url("./public/SB 어그로 L.ttf");
+        font-weight: 300;
+      }
+      @font-face {
+        font-family: "SB Aggro";
+        src: url("./public/SB 어그로 M.ttf");
+        font-weight: 500;
+      }
+      @font-face {
+        font-family: "SB Aggro";
+        src: url("./public/SB 어그로 B.ttf");
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="epic">
+      <div class="upperbar">
+        <div class="upperbar-child"></div>
+        <div class="upperbar-item"></div>
+        <div class="upperbar-inner"></div>
+        <div class="schoolinfo">
+          <b class="schoolname">수일고등학교</b>
+          <img class="icon-school" alt="" src="./public/icon.svg" />
+        </div>
+        <div class="time">
+          <b class="b" id="CurrentTime">ㄱㄷ</b>
+          <img class="icon-clock" alt="" src="./public/icon-clock.svg" />
+        </div>
+        <div class="weather">
+          <b class="weather1" id="Weather">날씨 : 권한없음</b>
+          <img class="icon-cloud" alt="" src="./public/icon-cloud.svg" />
+        </div>
+        <div class="tem">
+          <b class="weather2" id="Tem">온도 : 권한없음</b>
+          <img class="icon-tem" alt="" src="./public/icon-tem.svg" />
+        </div>
+        <div class="setting" id = "SettingButton">
+          <div class="setting-child"></div>
+          <b class="weather3">D-DAY 설정</b>
+          <img class="icon-setting" alt="" src="./public/icon-setting.svg" />
+        </div>
+      </div>
+      <div class="mainpage" id = "MainPage">
+        <div class="test-d-day">
+          <div class="title">
+            <b class="d-day">시험 D-DAY</b>
+            <img class="icon-a" alt="" src="./public/icon-a.svg" />
+          </div>
+          <b class="b1" id="Test_Count">30일</b>
+          <b class="oo-oo-oo" id="Test_Detail_Count">OO시간 OO분 OO초 남음..</b>
+          <div class="bar"></div>
+        </div>
+        <div class="test-d-day1">
+          <div class="title1">
+            <b class="d-day1">모의고사 D-DAY</b>
+            <img class="icon-jail" alt="" src="./public/icon1.svg" />
+          </div>
+          <b class="b2" id="Test_Count_Moi">30일</b>
+          <b class="oo-oo-oo1" id="Test_Detail_Count_Moi">OO시간 OO분 OO초 남음..</b>
+          <div class="bar1"></div>
+        </div>
+        <div class="bob">
+          <div class="bob-child"></div>
+          <div class="boblist" id="BobList">오늘 급식</div>
+          <div class="title2">
+            <b class="b3" >오늘 급식</b>
+            <img class="icon-food2" alt="" src="./public/icon2.svg" />
+          </div>
+          <div class="cal">
+            <div class="kal" id="Cal">총 칼로리 : N/A kcal</div>
+            <img class="icon-food" alt="" src="./public/icon3.svg" />
+          </div>
+          <div class="burger">
+            <div class="bur" id="buger">햄버거 : N/A개</div>
+            <img class="icon-food1" alt="" src="./public/icon4.svg" />
+          </div>
+        </div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <div class="setting1" id = "SettingMenu">
+        <img class="back-icon" alt="" src="./public/back.svg" />
+
+        <div class="title3">환경설정</div>
+        <div class="apply">
+          <div class="okbutton"></div>
+          <div class="apply1" id="ApplyButton">적용 </div>
+        </div>
+        <div class="test-dday-set">
+          <div class="test-d-dayset">
+            <span>시험</span>
+            <span class="id"> D-DAY 날짜 :</span>
+          </div>
+          <div class="textbox-test-dday">
+            <input class="text" type="date" id="testDdayinput" value="" name="txt" ></input>
+          </div>
+        </div>
+        <div class="textbox-moi-dday-set">
+          <div class="moi-d-dayset">
+            <span>모의고사</span>
+            <span class="id"> D-DAY 날짜 :</span>
+          </div>
+          <div class="textbox-test-dday">
+            <input class="text" type="date" id="MoitestDdayinput" value="" name="txt"></input>
+          </div>
+        </div>
+        <div class="school-id-set">
+          <div class="schoolid">
+            <span>학교 고유</span>
+            <span class="id"> ID(나이스) :</span>
+          </div>
+          <div class="textbox-test-dday">
+            <input class="text" placeholder="학교번호" value="7530524" ></input>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="./script/Main.js"> </script>
+  </body>
+</html>
