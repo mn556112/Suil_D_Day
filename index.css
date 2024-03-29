@@ -143,6 +143,15 @@
   width: 204.1px;
   height: 84px;
 }
+.timer-child {
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray-400);
+  width: 168px;
+  height: 84px;
+}
+
+
 .weather3 {
   position: absolute;
   top: 27px;
@@ -151,6 +160,18 @@
   width: 169.6px;
   height: 29px;
 }
+
+.timer_Text {
+  position: absolute;
+  top: 27px;
+  left: 56.4px;
+  display: inline-block;
+  width: 150.6px;
+  height: 29px;
+  font-size: 26px;
+}
+
+
 .icon-setting {
   position: absolute;
   height: 40.95%;
@@ -163,6 +184,19 @@
   overflow: hidden;
   max-height: 100%;
 }
+.icon-timer {
+  position: absolute;
+  height: 45.95%;
+  width: 27.34%;
+  top: 24.19%;
+  right: 79.82%;
+  bottom: 32.86%;
+  left: 4.84%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
 .setting {
   position: absolute;
   top: 0;
@@ -171,6 +205,20 @@
   height: 84px;
   cursor: pointer;
 }
+
+.timer {
+  position: absolute;
+  top: 0;
+  left: 780px;
+  width: 168px;
+  height: 84px;
+  cursor: pointer;
+}
+
+.timer:hover .timer-child {
+  background-color: rgb(36, 36, 36);
+}
+
 .setting:hover{
   background-color: rgb(36, 36, 36);
 }
