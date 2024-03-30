@@ -11,6 +11,10 @@ if (SettingButton) {
     });
 }
 
+
+
+
+
 //카운터
 
 var MoiTime = "2024-05-21";
@@ -81,6 +85,40 @@ setInterval(() => {
 
 }, 1000);
 
+//밥
+SchoolName
+var 시도교육청코드 = "J10";
+var 행정표준코드 = "7530524";
+function GetBoBData() {
+    const 현재날짜 = getCurrentDate();
+    console.log(시도교육청코드,행정표준코드);
+    const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=${시도교육청코드}&SD_SCHUL_CODE=${행정표준코드}&MLSV_YMD=${현재날짜}&KEY=${BoB_API_KEY}&Type=json`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.mealServiceDietInfo && data.mealServiceDietInfo[1] && data.mealServiceDietInfo[1].row && data.mealServiceDietInfo[1].row[0]) {
+                const mealData = data.mealServiceDietInfo[1].row[0];
+
+                const ScN = document.getElementById("SchoolName");
+                ScN.innerText = mealData.SCHUL_NM;
+
+                const BobList = document.getElementById("BobList");
+                BobList.innerHTML = removeNumbersInParentheses(mealData.DDISH_NM); // trim() 함수를 사용하여 앞뒤 공백 제거
+                const Calo = document.getElementById("Cal");
+                Calo.innerText = "총 칼로리 : " + mealData.CAL_INFO;
+                const Bugeer = document.getElementById("buger");
+                Bugeer.innerText = "햄버거 약 " + BurgerCal(mealData.CAL_INFO) + "개의 칼로리";
+            } else {
+                const ScN = document.getElementById("SchoolName");
+                BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
+                ScN.innerText = "알수없음!";
+                console.error('식사 데이터 없');
+            }
+        })
+        .catch(error => {
+            console.error('오류남:', error);
+        });
+}
 
 //날자 설정
 function getinput() {
@@ -88,13 +126,20 @@ function getinput() {
     MoiTime = document.getElementById('MoitestDdayinput').value;
     TestTime = document.getElementById('testDdayinput').value;
 
+    //급식 학교 id
+    시도교육청코드 = document.getElementById('시도교육청코드').value;
+    행정표준코드 = document.getElementById('행정표준코드').value;
+
     //localstorage
     window.localStorage.setItem("Moi", MoiTime);
     window.localStorage.setItem("Test", TestTime);
-
+    window.localStorage.setItem("시도교육청코드", 시도교육청코드);
+    window.localStorage.setItem("행정표준코드", 행정표준코드);
+    GetBoBData(); //급식정보 새로고침
 }
-var ApplyButton = document.getElementById("ApplyButton");
 
+
+var ApplyButton = document.getElementById("ApplyButton");
 
 if (ApplyButton) {
     ApplyButton.addEventListener("click", function () {
@@ -150,11 +195,18 @@ navigator.geolocation.getCurrentPosition( onGeoOk ,  onGeoErr );
 
 
 //localstorage 가져오기
-if (window.localStorage.getItem('Moi') != null) {
+if (window.localStorage.getItem('Moi') != null && window.localStorage.getItem('행정표준코드') != null) {
     MoiTime = window.localStorage.getItem('Moi');
     TestTime = window.localStorage.getItem('Test');
+
+    행정표준코드 = window.localStorage.getItem('행정표준코드');
+    시도교육청코드 = window.localStorage.getItem('시도교육청코드');
+
     document.getElementById('MoitestDdayinput').value = MoiTime;
     document.getElementById('testDdayinput').value = TestTime;
+    document.getElementById('행정표준코드').value = 행정표준코드;
+    document.getElementById('시도교육청코드').value = 시도교육청코드;
+
 }
 
 function getCurrentDate() {
@@ -193,32 +245,7 @@ function removeNumbersInParentheses(str) {
     return cleanedStr;
 }
 
-function GetBoBData() {
-    const 시도교육청코드 = "J10";
-    const 행정표준코드 = "7530524";
-    const 현재날짜 = getCurrentDate();
-    const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=${시도교육청코드}&SD_SCHUL_CODE=${행정표준코드}&MLSV_YMD=${현재날짜}&KEY=${BoB_API_KEY}&Type=json`;
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.mealServiceDietInfo && data.mealServiceDietInfo[1] && data.mealServiceDietInfo[1].row && data.mealServiceDietInfo[1].row[0]) {
-                const mealData = data.mealServiceDietInfo[1].row[0];
-
-                const BobList = document.getElementById("BobList");
-                BobList.innerHTML = removeNumbersInParentheses(mealData.DDISH_NM); // trim() 함수를 사용하여 앞뒤 공백 제거
-                const Calo = document.getElementById("Cal");
-                Calo.innerText = "총 칼로리 : " + mealData.CAL_INFO;
-                const Bugeer = document.getElementById("buger");
-                Bugeer.innerText = "햄버거 약 " + BurgerCal(mealData.CAL_INFO) + "개의 칼로리";
-            } else {
-                console.error('식사 데이터 없');
-            }
-        })
-        .catch(error => {
-            console.error('오류남:', error);
-        });
-}
 
 GetBoBData();
 setInterval(() => {
