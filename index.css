@@ -617,6 +617,11 @@
   font-weight: 500;
   display: inline-block;
 }
+.text_2 {
+  font-weight: 500;
+  display: inline-block;
+}
+
 .test-d-dayset {
   position: absolute;
   top: 0;
@@ -627,6 +632,13 @@
 }
 .text {
   width: 429px;
+  position: relative;
+  height: 31px;
+  flex-shrink: 0;
+}
+
+.text_2 {
+  width: 310px;
   position: relative;
   height: 31px;
   flex-shrink: 0;
@@ -649,6 +661,26 @@
   font-size: var(--font-size-5xl);
   color: var(--color-gainsboro-100);
 }
+
+.textbox-test-dday_2 {
+  position: absolute;
+  top: 0;
+  left: 529px;
+  border-radius: var(--br-9xs);
+  background-color: var(--color-darkgray);
+  border: 3px solid var(--color-gray-100);
+  box-sizing: border-box;
+  width: 350px;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-5xs);
+  font-size: var(--font-size-5xl);
+  color: var(--color-gainsboro-100);
+}
+
 .test-dday-set {
   position: absolute;
   top: 134px;
@@ -687,6 +719,19 @@
   width: 529px;
   height: 60px;
 }
+
+.schoolid_2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+  display: inline-block;
+  width: 529px;
+  height: 60px;
+}
+
+
 .school-id-set,
 .setting1 {
   position: absolute;
@@ -696,6 +741,17 @@
   height: 60px;
   color: #426bff;
 }
+
+.school-id-set_2 {
+  position: absolute;
+  top: 340px;
+  left: 302.2px;
+  width: 966px;
+  height: 60px;
+  color: #58ff42;
+}
+
+
 .setting1 {
   height: 117.76%;
   width: 120.43%;
