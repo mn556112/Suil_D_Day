@@ -175,7 +175,7 @@ function onGeoOk(position){
 
 			
 function onGeoErr(){
-	alert("위치권한 내놔")
+	//alert("위치권한 내놔")
 
     //함수로 만들기 귀찮
 
