@@ -11,6 +11,42 @@ if (SettingButton) {
     });
 }
 
+//2D Bastard
+
+var BobIco = document.getElementById("BobIco");
+var TwoD = document.getElementById("2D");
+var Count = 0;
+if (BobIco) {
+    BobIco.addEventListener("click", function () {
+        Count += 1;
+        if (Count >= 5)
+        {
+            Count = 0;
+            TwoD.classList.toggle('show');
+            setTimeout(function(){
+                TwoD.classList.toggle('show');
+            }, 3170);
+        }
+    });
+}
+
+
+var EsButton2 = document.getElementById("EsButton2");
+var Img = document.getElementById("4D");
+var Count2 = 0;
+if (EsButton2) {
+    EsButton2.addEventListener("click", function () {
+        Count2 += 1;
+        if (Count2 >= 5)
+        {
+            Count2 = 0;
+            Img.classList.toggle('show');
+            setTimeout(function(){
+                Img.classList.toggle('show');
+            }, 3170);
+        }
+    });
+}
 
 
 
