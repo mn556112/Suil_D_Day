@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   background-color: var(--color-darkslategray-400);
-  width: 1366px;
+  width: 100%;
   height: 84px;
 }
 .upperbar-inner,
@@ -234,7 +234,7 @@
 }
 .upperbar {
   left: 0;
-  width: 1366px;
+  width: 100%;
 }
 .d-day {
   top: calc(50% - 38.85px);
@@ -413,6 +413,8 @@
   left: calc(50% - 49.5px);
   width: 97px;
   height: 72.8px;
+  cursor: pointer;
+  transition: scale 0.2s ease;
 }
 .icon-food2,
 .kal,
@@ -560,6 +562,7 @@
   display: inline-block;
   width: 505px;
   height: 134px;
+  cursor: pointer;
 }
 .okbutton {
   height: 100%;
@@ -783,4 +786,48 @@
   font-size: var(--font-size-6xl-1);
   color: var(--color-white);
   font-family: var(--font-sb-aggro);
+}
+
+
+.ezpz {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: all 2s ease;
+}
+
+.ezpz.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.ezpz_Type {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+.ezpz_Type.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.icon-food2:hover {
+  scale: 1.04;
+}
+.icon-food2:active {
+  scale: 1.1;
+}
+.title3:hover {
+  scale: 1.01;
+}
+.title3:active {
+  scale: 1.1;
 }
