@@ -1,3 +1,4 @@
+
 //세팅 on/off
 var SettingButton = document.getElementById("SettingButton");
 var SettingMenu = document.getElementById("SettingMenu");
@@ -121,8 +122,13 @@ setInterval(() => {
 
 }, 1000);
 
+
+// 밥 리스트 텍스트 조정
+function isOverflowed(element) {
+    return element.scrollHeight > element.clientHeight;
+}
+
 //밥
-SchoolName
 var 시도교육청코드 = "J10";
 var 행정표준코드 = "7530524";
 function GetBoBData() {
@@ -144,6 +150,16 @@ function GetBoBData() {
                 Calo.innerText = "총 칼로리 : " + mealData.CAL_INFO;
                 const Bugeer = document.getElementById("buger");
                 Bugeer.innerText = "햄버거 약 " + BurgerCal(mealData.CAL_INFO) + "개의 칼로리";
+
+                if (isOverflowed(BobList)) {
+                    // overflow되는 경우에 대한 처리
+                    console.log("overflowed")
+                    BobList.classList.add('overflowed');
+                } else {
+                    // overflow되지 않는 경우에 대한 처리
+                    console.log("overflow not")
+                    BobList.classList.remove('overflowed');
+                }
             } else {
                 const ScN = document.getElementById("SchoolName");
                 BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
@@ -281,10 +297,9 @@ function removeNumbersInParentheses(str) {
     return cleanedStr;
 }
 
-
-
 GetBoBData();
 setInterval(() => {
     GetBoBData();
 },3600000);
+
 
