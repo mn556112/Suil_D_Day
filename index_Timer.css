@@ -41,6 +41,23 @@
 .starttimer:active {
   scale: 1.2;
 }
+.ChangeButton {
+  position: absolute;
+  height: 7%;
+  width: 7%;
+  top: 16%;
+  right: 12.19%;
+  bottom: 30.97%;
+  left: 6.8%;
+  font-size: 35px;
+  cursor: pointer;
+  transition: transform  0.25s ease;
+}
+.ChangeButton:hover {
+  transform: scale(1.1); /* 1.1배 크기로 확대 */
+}
+
+
 
 .okbutton1 {
   position: absolute;
@@ -75,7 +92,7 @@
   bottom: 31.08%;
   left: 20.19%;
   cursor: pointer;
-  transition: scale 0.25s ease;
+  transition: all 0.25s ease;
 }
 .reset:hover {
   scale: 1.1;
@@ -102,12 +119,28 @@
   bottom: 31.08%;
   left: 51.15%;
   cursor: pointer;
-  transition: scale 0.25s ease;
+  transition: all 0.25s ease;
 
 }
 .add1min:hover {
   scale: 1.1;
 }
+.add1min.hide
+{
+  visibility: hidden;
+  opacity: 0;
+}
+.add10min.hide
+{
+  visibility: hidden;
+  opacity: 0;
+}
+.reset.hide
+{
+  right: 34.54%;
+  left: 51.15%;
+}
+
 .add1min:active {
   scale: 1.2;
 }
@@ -135,7 +168,7 @@
   font-size: 148px;
   color: #000;
   text-align: left;
-  width: 525px;
+  width: 600px;
   height: 148px;
 }
 

@@ -51,12 +51,15 @@
           <div class="okbutton"></div>
           <div class="apply1">10분 추가</div>
         </div>
-        <div class="timer-title">타이머</div>
+        <div class="timer-title" id = 'ModeText'>타이머</div>
         <div class="timer-text" id = 'Timer_Text'>00:00:00</div>
         <div class="return-button" id="ReturnBu">
           <div class="okbutton4"></div>
           <div class="apply4">돌아가기</div>
         </div>
+        <div class="ChangeButton" id = 'Change'>
+          <div class="okbutton"></div>
+          <div class="apply1">전환</div>
       </div>
     </div>
 
@@ -76,6 +79,15 @@
     var Time_MiliSeconde = 0;
 
     var Timer_Text = document.getElementById("Timer_Text");
+    var Change_Text = document.getElementById("Change");
+    var ModeText = document.getElementById("ModeText");
+    var IStimer = 1;
+    
+
+
+
+
+
 
     function displayTime(minutes, seconds, milliseconds) {
         Timer_Text.innerText = (minutes < 10 ? "0" : "") + minutes + ":" +
@@ -93,15 +105,6 @@
         setTimeout(function() {
           Timer_Text.classList.remove('large');
         }, 100); // 3초 후에 다시 크기를 줄임
-  
-        
-        
-        
-        
-
-
-        
-        
       });
     }
 
@@ -118,10 +121,13 @@
         
       });
     }
+    var StopWatchStop = 0
 
     var ResetButton = document.getElementById("Reset");
     if (ResetButton) {
       ResetButton.addEventListener("click", function () {
+        StopWatchStop = 1
+        console.log(StopWatchStop)
         Time_Want_min = 0;
         Time_MiliSeconde = 0;
         displayTime(0, 0, 0);
@@ -145,61 +151,126 @@
         {
           return;
         }
-        IsClickStart = true;
-        Time_MiliSeconde = Time_Want_min * 60000;
-        StopTimer = setInterval(() => {
-          Time_MiliSeconde -= 10; // 10밀리초씩 감소하도록 수정
-          if (Time_MiliSeconde <= 0) {
-            IsClickStart = false;
-            clearInterval(StopTimer);
-            Time_Want_min = 0;
-            Time_MiliSeconde = 0;
-            displayTime(0, 0, 0);
+        if (IStimer == 1)
+        {
+          IsClickStart = true;
+          Time_MiliSeconde = Time_Want_min * 60000;
+          StopTimer = setInterval(() => {
+            Time_MiliSeconde -= 10; // 10밀리초씩 감소하도록 수정
+            if (Time_MiliSeconde <= 0) {
+              IsClickStart = false;
+              clearInterval(StopTimer);
+              Time_Want_min = 0;
+              Time_MiliSeconde = 0;
+              displayTime(0, 0, 0);
 
-            audio.currentTime = 0
-            audio.play();
+              audio.currentTime = 0
+              audio.play();
 
-            Timer_Text.classList.toggle('ColorChange')
-
-
-
-            Timer_Text.classList.toggle('blink')
-            setTimeout(function() {
-              Timer_Text.classList.toggle('blink');
-            }, 500);
-            setTimeout(function() {
-              Timer_Text.classList.toggle('blink');
-            }, 1000);
-            setTimeout(function() {
-              Timer_Text.classList.toggle('blink');
-            }, 1500);
-            setTimeout(function() {
-              Timer_Text.classList.toggle('blink');
-            }, 2000);
-            setTimeout(function() {
-              Timer_Text.classList.toggle('blink');
               Timer_Text.classList.toggle('ColorChange')
-            }, 2500);
-            
 
-            setTimeout(function() {
-              audio.currentTime = 0
-              audio.play();
-            }, 1000);
-            
-            setTimeout(function() {
-              audio.currentTime = 0
-              audio.play();
-            }, 2000);
-            return;
+
+
+              Timer_Text.classList.toggle('blink')
+              setTimeout(function() {
+                Timer_Text.classList.toggle('blink');
+              }, 500);
+              setTimeout(function() {
+                Timer_Text.classList.toggle('blink');
+              }, 1000);
+              setTimeout(function() {
+                Timer_Text.classList.toggle('blink');
+              }, 1500);
+              setTimeout(function() {
+                Timer_Text.classList.toggle('blink');
+              }, 2000);
+              setTimeout(function() {
+                Timer_Text.classList.toggle('blink');
+                Timer_Text.classList.toggle('ColorChange')
+              }, 2500);
+              
+
+              setTimeout(function() {
+                audio.currentTime = 0
+                audio.play();
+              }, 1000);
+              
+              setTimeout(function() {
+                audio.currentTime = 0
+                audio.play();
+              }, 2000);
+              return;
+            }
+
+            Min_number = Math.floor(Time_MiliSeconde / 60000);
+            Sec_number = Math.floor((Time_MiliSeconde % 60000) / 1000);
+            MiliSec_number = Math.floor((Time_MiliSeconde % 1000) / 10);
+
+            displayTime(Min_number, Sec_number, MiliSec_number);
+          }, 10); // 100밀리초마다 호출되도록 수정
           }
+          else
+          {
+            IsClickStart = true;
+            Time_MiliSeconde = Time_Want_min * 60000;
+            console.log(StopWatchStop)
 
-          Min_number = Math.floor(Time_MiliSeconde / 60000);
-          Sec_number = Math.floor((Time_MiliSeconde % 60000) / 1000);
-          MiliSec_number = Math.floor((Time_MiliSeconde % 1000) / 10);
+            StopTimer = setInterval(() => {
+              
+              Time_MiliSeconde += 10; // 10밀리초씩 감소하도록 수정
+              Min_number = Math.floor(Time_MiliSeconde / 60000);
+              Sec_number = Math.floor((Time_MiliSeconde % 60000) / 1000);
+              MiliSec_number = Math.floor((Time_MiliSeconde % 1000) / 10);
 
-          displayTime(Min_number, Sec_number, MiliSec_number);
-        }, 10); // 100밀리초마다 호출되도록 수정
+              displayTime(Min_number, Sec_number, MiliSec_number);
+
+              if (StopWatchStop == 1) {
+              console.log("정지함")
+              IsClickStart = false;
+              clearInterval(StopTimer);
+              Time_Want_min = 0;
+              Time_MiliSeconde = 0;
+              displayTime(0, 0, 0);
+              StopWatchStop = 0
+              }
+            }, 10); // 100밀리초마다 호출되도록 수정
+          }
+      });
+    }
+
+
+    if (Change_Text) {
+      Change_Text.addEventListener("click", function () 
+      {
+        if (IsClickStart == false)
+        {
+          IStimer = IStimer*-1;
+          console.log(IStimer)
+          if (IStimer==1)
+          {
+            ModeText.innerText = "타이머"
+            TenMinPlusButton.classList.remove('hide')
+            OneMinPlusButton.classList.remove('hide')
+            ResetButton.classList.remove('hide')
+            Min_number = 0
+            Sec_number = 0
+            MiliSec_number = 0
+            Time_Want_min = 0
+            displayTime(Min_number, Sec_number, MiliSec_number);
+
+          }
+          else{
+            ModeText.innerText = "스톱워치"
+            TenMinPlusButton.classList.add('hide')
+            OneMinPlusButton.classList.add('hide')
+            ResetButton.classList.add('hide')
+            Min_number = 0
+            Sec_number = 0
+            MiliSec_number = 0
+            Time_Want_min = 0
+            displayTime(Min_number, Sec_number, MiliSec_number);
+          }
+        }
       });
     }
 
