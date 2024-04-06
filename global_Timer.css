@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-sb-aggro: "SB Aggro";
+
+  /* font sizes */
+  --font-size-21xl: 40px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-darkslategray: #343333;
+
+  /* Border radiuses */
+  --br-65xl: 84px;
+}

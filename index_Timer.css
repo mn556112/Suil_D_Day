@@ -1,0 +1,218 @@
+.background-timer-icon,
+.okbutton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1579.6px;
+  height: 740.1px;
+}
+.okbutton {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  border-radius: var(--br-65xl);
+  background-color: var(--color-darkslategray);
+}
+.apply {
+  position: absolute;
+  height: 64.48%;
+  width: 72.59%;
+  top: 21.12%;
+  left: 14.29%;
+  font-weight: 500;
+  display: inline-block;
+}
+.starttimer {
+  position: absolute;
+  height: 12.86%;
+  width: 19.06%;
+  top: 56.17%;
+  right: 12.19%;
+  bottom: 30.97%;
+  left: 68.75%;
+  font-size: 64px;
+  cursor: pointer;
+  transition: scale 0.25s ease;
+}
+.starttimer:hover {
+  scale: 1.1;
+}
+.starttimer:active {
+  scale: 1.2;
+}
+
+.okbutton1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-65xl);
+  background-color: #ff3f3f;
+  cursor: pointer;
+}
+.apply1 {
+  height: 64.37%;
+  width: 75.66%;
+  top: 26.44%;
+  left: 11.95%;
+  font-weight: 500;
+  display: inline-block;
+}
+.apply1,
+.apply2,
+.reset {
+  position: absolute;
+}
+.reset {
+  height: 8.95%;
+  width: 14.31%;
+  top: 59.97%;
+  right: 65.5%;
+  bottom: 31.08%;
+  left: 20.19%;
+  cursor: pointer;
+  transition: scale 0.25s ease;
+}
+.reset:hover {
+  scale: 1.1;
+}
+.reset:active {
+  scale: 1.2;
+}
+
+.apply2 {
+  height: 64.37%;
+  width: 75.66%;
+  top: 25.29%;
+  left: 11.95%;
+  font-weight: 500;
+  display: inline-block;
+}
+.add10min,
+.add1min {
+  position: absolute;
+  height: 8.95%;
+  width: 14.31%;
+  top: 59.97%;
+  right: 34.54%;
+  bottom: 31.08%;
+  left: 51.15%;
+  cursor: pointer;
+  transition: scale 0.25s ease;
+
+}
+.add1min:hover {
+  scale: 1.1;
+}
+.add1min:active {
+  scale: 1.2;
+}
+.add10min {
+  right: 49.99%;
+  left: 35.71%;
+  cursor: pointer;
+}
+
+.add10min:hover {
+  scale: 1.1;
+}
+.add10min:active {
+  scale: 1.2;
+}
+.timer-text,
+.timer-title {
+  position: absolute;
+  font-weight: 500;
+  display: inline-block;
+}
+.timer-title {
+  top: 13px;
+  left: 99px;
+  font-size: 148px;
+  color: #000;
+  text-align: left;
+  width: 525px;
+  height: 148px;
+}
+
+.okbutton4 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-65xl);
+  background-color: #4f4f4f;
+}
+.apply4 {
+  position: absolute;
+  height: 64.37%;
+  width: 75.66%;
+  top: 27.59%;
+  left: 11.95%;
+  font-weight: 500;
+  display: inline-block;
+}
+.return-button {
+  position: absolute;
+  height: 8.95%;
+  width: 14.31%;
+  top: 0;
+  right: 10.29%;
+  bottom: 91.05%;
+  left: 75.4%;
+  cursor: pointer;
+  transition: scale 0.5s ease;
+}
+.return-button:hover {
+  scale: 1.1;
+}
+
+.timer {
+  position: absolute;
+  bottom: -222.1px;
+  left: -71px;
+  width: 1579.6px;
+  height: 972.1px;
+}
+.forwoo {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  height: 768px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-21xl);
+  color: var(--color-white);
+  font-family: var(--font-sb-aggro);
+}
+.timer-text {
+  top: calc(50% - 271.05px);
+  left: calc(50% - 620.8px);
+  font-size: 200px;
+  color: #292929;
+  width: 1205px;
+  height: 250px;
+  font-family: "Timer Pont";
+  transition: scale 0.05s ease;
+}
+.timer-text.large
+{
+  scale: 1.1;
+  color: rgb(80, 182, 80);
+}
+.timer-text.blink
+{
+  opacity: 0;
+}
+.timer-text.ColorChange
+{
+  color:#ff3f3f;
+}
+

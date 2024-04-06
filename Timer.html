@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- sound -->
+    <div>
+    <audio id='audio_play' src='./public/beep-beep-6151.mp3'>
+    </audio> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global_Timer.css" />
+    <link rel="stylesheet" href="./index_Timer.css" />
+
+    <style>
+      @font-face {
+        font-family: "SB Aggro";
+        src: url("./public/SB_M.ttf");
+
+        font-weight: 500;
+      }
+      @font-face {
+        font-family: "Timer Pont";
+        src: url("./public/numberpont.ttf");
+        
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="forwoo">
+      <div class="timer">
+        <img
+          class="background-timer-icon"
+          alt=""
+          src="./public/background-timer.svg"
+        />
+
+        <div class="starttimer" id = 'Start'>
+          <div class="okbutton"></div>
+          <div class="apply">시작</div>
+        </div>
+        <div class="reset" id = 'Reset'>
+          <div class="okbutton1"></div>
+          <div class="apply1">초기화</div>
+        </div>
+        <div class="add1min" id = '1_min_plus'>
+          <div class="okbutton"></div>
+          <div class="apply2">1분 추가</div>
+        </div>
+        <div class="add10min" id = '10_min_plus'>
+          <div class="okbutton"></div>
+          <div class="apply1">10분 추가</div>
+        </div>
+        <div class="timer-title">타이머</div>
+        <div class="timer-text" id = 'Timer_Text'>00:00:00</div>
+        <div class="return-button" id="ReturnBu">
+          <div class="okbutton4"></div>
+          <div class="apply4">돌아가기</div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    //돌아가기
+    var ReturnBu = document.getElementById("ReturnBu");
+    if (ReturnBu) {
+      ReturnBu.addEventListener("click", function () {
+        location.replace('index.html');
+      });
+    }
+
+
+
+    var audio = document.getElementById('audio_play');
+    var Time_Want_min = 0;
+    var Time_MiliSeconde = 0;
+
+    var Timer_Text = document.getElementById("Timer_Text");
+
+    function displayTime(minutes, seconds, milliseconds) {
+        Timer_Text.innerText = (minutes < 10 ? "0" : "") + minutes + ":" +
+                              (seconds < 10 ? "0" : "") + seconds + ":" +
+                              (milliseconds < 10 ? "0" : "") + milliseconds; // 밀리초를 소수점 두 자리까지 표시
+    }
+
+    var OneMinPlusButton = document.getElementById("1_min_plus");
+    if (OneMinPlusButton) {
+      OneMinPlusButton.addEventListener("click", function () {
+        Time_Want_min += 1;
+        displayTime(Time_Want_min, 0, 0);
+
+        Timer_Text.classList.toggle('large')
+        setTimeout(function() {
+          Timer_Text.classList.remove('large');
+        }, 100); // 3초 후에 다시 크기를 줄임
+  
+        
+        
+        
+        
+
+
+        
+        
+      });
+    }
+
+    var TenMinPlusButton = document.getElementById("10_min_plus");
+    if (TenMinPlusButton) {
+      TenMinPlusButton.addEventListener("click", function () {
+        Time_Want_min += 10;
+        displayTime(Time_Want_min, 0, 0);
+
+        Timer_Text.classList.toggle('large')
+        setTimeout(function() {
+          Timer_Text.classList.remove('large');
+        }, 100); // 3초 후에 다시 크기를 줄임
+        
+      });
+    }
+
+    var ResetButton = document.getElementById("Reset");
+    if (ResetButton) {
+      ResetButton.addEventListener("click", function () {
+        Time_Want_min = 0;
+        Time_MiliSeconde = 0;
+        displayTime(0, 0, 0);
+        Timer_Text.classList.toggle('large')
+        setTimeout(function() {
+          Timer_Text.classList.remove('large');
+        }, 100); // 3초 후에 다시 크기를 줄임
+      });
+    }
+
+    var StopTimer;
+    var Min_number = 0;
+    var Sec_number = 0;
+    var MiliSec_number = 0;
+    var IsClickStart = false;
+
+    var StartButton = document.getElementById("Start");
+    if (StartButton) {
+      StartButton.addEventListener("click", function () {
+        if (IsClickStart)
+        {
+          return;
+        }
+        IsClickStart = true;
+        Time_MiliSeconde = Time_Want_min * 60000;
+        StopTimer = setInterval(() => {
+          Time_MiliSeconde -= 10; // 10밀리초씩 감소하도록 수정
+          if (Time_MiliSeconde <= 0) {
+            IsClickStart = false;
+            clearInterval(StopTimer);
+            Time_Want_min = 0;
+            Time_MiliSeconde = 0;
+            displayTime(0, 0, 0);
+
+            audio.currentTime = 0
+            audio.play();
+
+            Timer_Text.classList.toggle('ColorChange')
+
+
+
+            Timer_Text.classList.toggle('blink')
+            setTimeout(function() {
+              Timer_Text.classList.toggle('blink');
+            }, 500);
+            setTimeout(function() {
+              Timer_Text.classList.toggle('blink');
+            }, 1000);
+            setTimeout(function() {
+              Timer_Text.classList.toggle('blink');
+            }, 1500);
+            setTimeout(function() {
+              Timer_Text.classList.toggle('blink');
+            }, 2000);
+            setTimeout(function() {
+              Timer_Text.classList.toggle('blink');
+              Timer_Text.classList.toggle('ColorChange')
+            }, 2500);
+            
+
+            setTimeout(function() {
+              audio.currentTime = 0
+              audio.play();
+            }, 1000);
+            
+            setTimeout(function() {
+              audio.currentTime = 0
+              audio.play();
+            }, 2000);
+            return;
+          }
+
+          Min_number = Math.floor(Time_MiliSeconde / 60000);
+          Sec_number = Math.floor((Time_MiliSeconde % 60000) / 1000);
+          MiliSec_number = Math.floor((Time_MiliSeconde % 1000) / 10);
+
+          displayTime(Min_number, Sec_number, MiliSec_number);
+        }, 10); // 100밀리초마다 호출되도록 수정
+      });
+    }
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  </script>
+
+  </body>
+</html>
