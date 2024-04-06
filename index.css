@@ -6,10 +6,7 @@
   width: 100%;
   height: 84px;
 }
-
-
 .upperbar-inner,
-
 .upperbar-item {
   position: absolute;
   top: 0;
@@ -128,7 +125,11 @@
   overflow: hidden;
   max-height: 100%;
 }
-.setting-child,
+.setting-child {
+  visibility: hidden;
+}
+
+
 .tem {
   position: absolute;
   top: 23.1px;
@@ -169,7 +170,7 @@
   top: 27px;
   left: 56.4px;
   display: inline-block;
-  width: 150.6px;
+  width: 110px;
   height: 29px;
   font-size: 26px;
 }
@@ -404,11 +405,6 @@
   height: 373.6px;
   font-size: 48px;
   color: #424242;
-  overflow: auto;
-}
-
-.boblist.overflowed {
-  font-size: 43px;
 }
 .b3 {
   top: calc(50% - 14.25px);
