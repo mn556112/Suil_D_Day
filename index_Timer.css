@@ -92,6 +92,7 @@
   bottom: 31.08%;
   left: 20.19%;
   cursor: pointer;
+  z-index: 1;
   transition: all 0.25s ease;
 }
 .reset:hover {
@@ -109,7 +110,18 @@
   font-weight: 500;
   display: inline-block;
 }
-.add10min,
+.add10min {
+  position: absolute;
+  height: 8.95%;
+  width: 14.31%;
+  top: 59.97%;
+  right: 34.54%;
+  bottom: 31.08%;
+  left: 51.15%;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
 .add1min {
   position: absolute;
   height: 8.95%;
