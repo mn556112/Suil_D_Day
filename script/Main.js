@@ -11,6 +11,9 @@ if (SettingButton) {
     });
 }
 
+
+
+
 //2D Bastard
 
 var BobIco = document.getElementById("BobIco");
@@ -19,11 +22,10 @@ var Count = 0;
 if (BobIco) {
     BobIco.addEventListener("click", function () {
         Count += 1;
-        if (Count >= 5)
-        {
+        if (Count >= 5) {
             Count = 0;
             TwoD.classList.toggle('show');
-            setTimeout(function(){
+            setTimeout(function () {
                 TwoD.classList.toggle('show');
             }, 3170);
         }
@@ -43,11 +45,10 @@ var Count2 = 0;
 if (EsButton2) {
     EsButton2.addEventListener("click", function () {
         Count2 += 1;
-        if (Count2 >= 5)
-        {
+        if (Count2 >= 5) {
             Count2 = 0;
             Img.classList.toggle('show');
-            setTimeout(function(){
+            setTimeout(function () {
                 Img.classList.toggle('show');
             }, 3170);
         }
@@ -70,7 +71,7 @@ function calcDate(IsDetail, Type, idk) {
         const minutes = now.getMinutes().toString().padStart(2, '0'); // 분을 가져오고 2의 자리수로 만들어주며, 1의 자리수면 앞에 0을 추가
         return `${hour}:${minutes}`;
     }
-    
+
     else {
         let goalDate;
         // Type에 따라 goalDate 설정
@@ -128,12 +129,27 @@ setInterval(() => {
 }, 1000);
 
 //밥
-SchoolName
+function isScrollActive(element) {
+    return element.scrollHeight > element.clientHeight;
+}
+
+
+function adjustTextSizeToAvoidOverflow(element) 
+{
+    let sz = 48
+    while (isScrollActive(element) == true)
+    {
+        sz = sz - 0.1;
+        element.style.fontSize = sz+"px";
+    }
+}
+
+
 var 시도교육청코드 = "J10";
 var 행정표준코드 = "7530524";
 function GetBoBData() {
     const 현재날짜 = getCurrentDate();
-    console.log(시도교육청코드,행정표준코드);
+    console.log(시도교육청코드, 행정표준코드);
     const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=${시도교육청코드}&SD_SCHUL_CODE=${행정표준코드}&MLSV_YMD=${현재날짜}&KEY=${BoB_API_KEY}&Type=json`;
     fetch(url)
         .then(response => response.json())
@@ -150,6 +166,14 @@ function GetBoBData() {
                 Calo.innerText = "총 칼로리 : " + mealData.CAL_INFO;
                 const Bugeer = document.getElementById("buger");
                 Bugeer.innerText = "햄버거 약 " + BurgerCal(mealData.CAL_INFO) + "개의 칼로리";
+
+                //Text Scalling
+                if (isScrollActive(BobList)) {
+                    adjustTextSizeToAvoidOverflow(BobList);
+                    console.log('actived');
+                } else {
+                    console.log('disabled');
+                }
             } else {
                 const ScN = document.getElementById("SchoolName");
                 BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
@@ -194,20 +218,20 @@ if (ApplyButton) {
 const API_KEY = ("7612e245f1d719a6ab7411868e6cc29f");
 function GetWeatherData(position) {
     const lat = position.coords.latitude;
-	const lng = position.coords.longitude;
+    const lng = position.coords.longitude;
     const lang = "kr"
-	const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&lang=${lang}&units=metric`
-	fetch(url).then(response=> response.json())
-		.then(data=> {
-		const temp = document.getElementById("Tem");
-		const weather = document.getElementById("Weather");
-		temp.innerText = "온도 : " + data.main.temp + "°C" ;
-        const WeatherInfo = data.weather[0].description;
-		weather.innerText = "날씨 : " + WeatherInfo;
-	});
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&lang=${lang}&units=metric`
+    fetch(url).then(response => response.json())
+        .then(data => {
+            const temp = document.getElementById("Tem");
+            const weather = document.getElementById("Weather");
+            temp.innerText = "온도 : " + data.main.temp + "°C";
+            const WeatherInfo = data.weather[0].description;
+            weather.innerText = "날씨 : " + WeatherInfo;
+        });
 }
 
-function onGeoOk(position){
+function onGeoOk(position) {
     GetWeatherData(position)
 
     setInterval(() => {
@@ -215,25 +239,25 @@ function onGeoOk(position){
     }, 30000); //30초마다 새로고침
 }
 
-			
-function onGeoErr(){
-	//alert("위치권한 내놔")
+
+function onGeoErr() {
+    //alert("위치권한 내놔")
 
     //함수로 만들기 귀찮
 
     const lang = "kr"
-	const url = `https://api.openweathermap.org/data/2.5/weather?lat=37&lon=127&appid=${API_KEY}&lang=${lang}&units=metric`
-	fetch(url).then(response=> response.json())
-		.then(data=> {
-		const temp = document.getElementById("Tem");
-		const weather = document.getElementById("Weather");
-		temp.innerText = "온도 : " + data.main.temp + "°C" ;
-        const WeatherInfo = data.weather[0].description;
-		weather.innerText = "날씨 : " + WeatherInfo;
-	});
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=37&lon=127&appid=${API_KEY}&lang=${lang}&units=metric`
+    fetch(url).then(response => response.json())
+        .then(data => {
+            const temp = document.getElementById("Tem");
+            const weather = document.getElementById("Weather");
+            temp.innerText = "온도 : " + data.main.temp + "°C";
+            const WeatherInfo = data.weather[0].description;
+            weather.innerText = "날씨 : " + WeatherInfo;
+        });
 
 }
-navigator.geolocation.getCurrentPosition( onGeoOk ,  onGeoErr );
+navigator.geolocation.getCurrentPosition(onGeoOk, onGeoErr);
 
 
 //localstorage 가져오기
@@ -292,5 +316,5 @@ function removeNumbersInParentheses(str) {
 GetBoBData();
 setInterval(() => {
     GetBoBData();
-},3600000);
+}, 3600000);
 
