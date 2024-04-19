@@ -3,7 +3,7 @@
   다양한 기능을 제공해주는 만능 프로그램
   ## 기능
   ### **메인 화면**
-  <img src="/public/Info1.jpg" width="450px" height="150px" alt="Main"></img><br/>
+  <img src="/public/Info1.jpg" width=40% height=15% alt="Main"></img><br/>
   1) 시험 D-DAY 기능
   2) 나이스 API를 이용한 학교 급식(+칼로리) 제공
   3) OpenWeather API를 통한 온도와 날씨 제공
