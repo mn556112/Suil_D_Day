@@ -98,7 +98,13 @@ function calcDate(IsDetail, Type, idk) {
                 return 'D-DAY';;
             }
         }
-
+        if (days == 0) {
+            if (IsDetail == true) {
+                return ``;
+            } else {
+                return `${hours}시간`;
+            }
+        }
 
         if (distance < 0) {
             if (IsDetail == true) {
@@ -134,13 +140,11 @@ function isScrollActive(element) {
 }
 
 
-function adjustTextSizeToAvoidOverflow(element) 
-{
+function adjustTextSizeToAvoidOverflow(element) {
     let sz = 48
-    while (isScrollActive(element) == true)
-    {
+    while (isScrollActive(element) == true) {
         sz = sz - 0.1;
-        element.style.fontSize = sz+"px";
+        element.style.fontSize = sz + "px";
     }
 }
 
@@ -215,6 +219,10 @@ if (ApplyButton) {
 }
 
 //날씨 온도
+
+let refreshInterval = 30; // 새로고침 간격 (초)
+let remainingTime = refreshInterval; // 남은 시간 초기화
+
 const API_KEY = ("7612e245f1d719a6ab7411868e6cc29f");
 function GetWeatherData(position) {
     const lat = position.coords.latitude;
@@ -233,10 +241,16 @@ function GetWeatherData(position) {
 
 function onGeoOk(position) {
     GetWeatherData(position)
-
     setInterval(() => {
         GetWeatherData(position)
-    }, 30000); //30초마다 새로고침
+        // 남은 시간 갱신
+        remainingTime = refreshInterval;
+        updateRemainingTime();
+
+    }, refreshInterval * 1000); // ms 단위로 변환하여 설정 (setInterval의 인자는 밀리초)
+
+    // 초당 남은 시간 갱신
+    setInterval(updateRemainingTime, 1000);
 }
 
 
@@ -245,20 +259,35 @@ function onGeoErr() {
 
     //함수로 만들기 귀찮
 
-    const lang = "kr"
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=37&lon=127&appid=${API_KEY}&lang=${lang}&units=metric`
-    fetch(url).then(response => response.json())
-        .then(data => {
-            const temp = document.getElementById("Tem");
-            const weather = document.getElementById("Weather");
-            temp.innerText = "온도 : " + data.main.temp + "°C";
-            const WeatherInfo = data.weather[0].description;
-            weather.innerText = "날씨 : " + WeatherInfo;
-        });
+    setInterval(() => {
+        const lang = "kr"
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=37&lon=127&appid=${API_KEY}&lang=${lang}&units=metric`
+        fetch(url).then(response => response.json())
+            .then(data => {
+                const temp = document.getElementById("Tem");
+                const weather = document.getElementById("Weather");
+                temp.innerText = "온도 : " + data.main.temp + "°C";
+                const WeatherInfo = data.weather[0].description;
+                weather.innerText = "날씨 : " + WeatherInfo;
+            });
 
+        // 남은 시간 갱신
+        remainingTime = refreshInterval;
+        updateRemainingTime();
+
+    }, refreshInterval * 1000); // ms 단위로 변환하여 설정 (setInterval의 인자는 밀리초)
+
+    // 초당 남은 시간 갱신
+    setInterval(updateRemainingTime, 1000);
 }
-navigator.geolocation.getCurrentPosition(onGeoOk, onGeoErr);
 
+function updateRemainingTime() {
+    const weatherRe = document.getElementById("WeatherRe");
+    weatherRe.innerText = `정보 새로고침까지 ${remainingTime}초..`;
+    remainingTime--;
+}
+
+navigator.geolocation.getCurrentPosition(onGeoOk, onGeoErr);
 
 //localstorage 가져오기
 if (window.localStorage.getItem('Moi') != null && window.localStorage.getItem('행정표준코드') != null) {
