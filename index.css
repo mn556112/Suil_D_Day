@@ -86,6 +86,17 @@
   width: 206.3px;
   height: 30.3px;
 }
+.Reflesh {
+  top: -20px;
+  left: -18px;
+  display: inline-block;
+  width: 306.3px;
+  height: 30.3px;
+  font-size: 11px;
+  position: absolute;
+  font-weight: 500;
+}
+
 .icon-cloud {
   position: absolute;
   height: 84.97%;
