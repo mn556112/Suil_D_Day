@@ -846,3 +846,114 @@
 .title3:active {
   scale: 1.1;
 }
+
+
+.background-n {
+  position: absolute;
+  top: calc(50% - 196px);
+  left: calc(50% - 424.5px);
+  background-color: #303030;
+  width: 849px;
+  height: 392px;
+}
+.notify-tile-okbutton {
+  position: absolute;
+  top: calc(50% - 31px);
+  left: calc(50% - 94.5px);
+  border-radius: 84px;
+  background-color: var(--color-white);
+  width: 189px;
+  height: 62px;
+  transition: all 0.2s ease;
+  text-align: center;
+  line-height: 62px;
+}
+
+.notify-tile-okbutton:hover {
+  scale: 1.06;
+}
+.notify-tile-okbutton:active {
+  scale: 1.2;
+}
+
+
+.notify-ok {
+  position: absolute;
+  top: calc(50% + 113px);
+  left: calc(50% + 194.5px);
+  width: 189px;
+  height: 62px;
+  color: #2e2e2e;
+}
+.notify-topbar {
+  position: absolute;
+  top: calc(50% - 34.8px);
+  left: calc(50% - 424.5px);
+  background-color: #202020;
+  width: 849px;
+  height: 69.6px;
+}
+.notify-tile {
+  position: absolute;
+  top: calc(50% - 18.35px);
+  left: calc(50% - 50px);
+  font-weight: 500;
+  display: inline-block;
+  width: 157px;
+  height: 47.7px;
+  font-size: 27px;
+}
+.n-image-icon {
+  position: absolute;
+  top: calc(50% - 25.25px);
+  left: calc(50% - 104px);
+  width: 45px;
+  height: 41px;
+  object-fit: cover;
+}
+.titlen,
+.upperbar-n {
+  position: absolute;
+  top: calc(50% - 20.5px);
+  left: calc(50% - 382.5px);
+  width: 208px;
+  height: 50.5px;
+}
+.upperbar-n {
+  top: calc(50% - 196px);
+  left: calc(50% - 424.5px);
+  width: 849px;
+  height: 69.6px;
+  text-align: left;
+}
+.info-n {
+  position: absolute;
+  top: calc(50% - 99.7px);
+  left: calc(50% - 377.5px);
+  font-size: 48px;
+  font-weight: 500;
+  display: inline-block;
+  width: 741px;
+  height: 212.7px;
+}
+.notify1 {
+  position: absolute;
+  top: calc(50% - 231px);
+  left: calc(50% - 425px);
+  width: 849px;
+  height: 392px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+
+
+.notify1.Show {
+  visibility: visible;
+  opacity: 1;
+}
+.notify1.Hide {
+  visibility: hidden;
+  opacity: 0;
+}
