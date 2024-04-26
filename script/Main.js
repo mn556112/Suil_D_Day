@@ -11,8 +11,24 @@ if (SettingButton) {
     });
 }
 
+// 알림 시스템
+var okButton = document.querySelector('.notify-tile-okbutton');
+
+// 버튼에 클릭 이벤트 리스너를 추가
+okButton.addEventListener('click', function() {
+  // 클릭되면 버튼에 'Hide' 클래스를 추가
+  document.querySelector('.notify1').classList.toggle('Show');
+});
 
 
+function NotifyMes(Tit,Txt)
+{
+    const Title_Element = document.getElementById("N_Title");
+    const Text_Element = document.getElementById("N_Text");
+    Title_Element.innerText = Tit;
+    Text_Element.innerText = Txt;
+    document.querySelector('.notify1').classList.toggle('Show');
+}
 
 //2D Bastard
 
@@ -80,6 +96,7 @@ function calcDate(IsDetail, Type, idk) {
         } else if (Type === "Moi") {
             goalDate = new Date(MoiTime).getTime(); // Moi의 경우 다른 날짜로 설정
         } else {
+            NotifyMes("오류!","Invalid Type");
             throw new Error("Invalid Type");
         }
 
@@ -182,6 +199,7 @@ function GetBoBData() {
                 const ScN = document.getElementById("SchoolName");
                 BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
                 ScN.innerText = "알수없음!";
+                NotifyMes("오류!","시도교육청,행정표준 코드 확인 필요");
                 console.error('식사 데이터 없');
             }
         })
@@ -256,7 +274,6 @@ function onGeoOk(position) {
 
 function onGeoErr() {
     //alert("위치권한 내놔")
-
     //함수로 만들기 귀찮
 
     setInterval(() => {
