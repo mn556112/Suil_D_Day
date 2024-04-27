@@ -54,6 +54,10 @@
   display: inline-block;
   width: 150.5px;
   height: 42.2px;
+  transition: all 0.2s ease;
+}
+.b.Scale {
+  scale: 1.3;
 }
 .icon-clock {
   height: 85.31%;
@@ -85,7 +89,13 @@
   display: inline-block;
   width: 206.3px;
   height: 30.3px;
+  transition: all 0.1s ease;
 }
+.weather1.Scale {
+  scale: 1.3;
+}
+
+
 .Reflesh {
   top: -20px;
   left: -18px;
@@ -123,7 +133,13 @@
   display: inline-block;
   width: 206.3px;
   height: 30.3px;
+  transition: all 0.1s ease;
 }
+
+.weather2.Scale {
+  scale: 1.3;
+}
+
 .icon-tem {
   position: absolute;
   height: 88.47%;
@@ -821,6 +837,21 @@
   opacity: 1;
 }
 
+.ezpz_one {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: all 2s ease;
+}
+
+.ezpz_one.show {
+  visibility: visible;
+  opacity: 1;
+}
+
 .ezpz_Type {
   width: 100%;
   position: absolute;
@@ -834,6 +865,12 @@
 .ezpz_Type.show {
   visibility: visible;
   opacity: 1;
+}
+.icon-a:hover {
+  scale: 1.04;
+}
+.icon-a:active {
+  scale: 1.1
 }
 
 .icon-food2:hover {
@@ -946,7 +983,9 @@
   height: 392px;
   opacity: 0;
   visibility: hidden;
+  scale: 0;
   transition: all 0.3s ease;
+
 }
 
 
@@ -954,7 +993,9 @@
 .notify1.Show {
   visibility: visible;
   opacity: 1;
+  scale: 1;
 }
+
 .notify1.Hide {
   visibility: hidden;
   opacity: 0;
