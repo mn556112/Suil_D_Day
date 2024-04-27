@@ -13,20 +13,37 @@ if (SettingButton) {
 
 // 알림 시스템
 var okButton = document.querySelector('.notify-tile-okbutton');
-
+var audio = document.getElementById('audio_play');
 // 버튼에 클릭 이벤트 리스너를 추가
 okButton.addEventListener('click', function() {
   // 클릭되면 버튼에 'Hide' 클래스를 추가
   document.querySelector('.notify1').classList.remove('Show');
 });
 
+var NotifyBack = document.querySelector('.background-inv');
+
+NotifyBack.addEventListener('click', function() {
+    // 클릭되면 버튼에 'Hide' 클래스를 추가
+    document.querySelector('.notify1').classList.remove('Show');
+});
 
 function NotifyMes(Tit,Txt)
 {
     const Title_Element = document.getElementById("N_Title");
     const Text_Element = document.getElementById("N_Text");
-    Title_Element.innerHTML = Tit;
-    Text_Element.innerHTML = Txt;
+    const isShowing = document.querySelector('.notify1').classList.contains('Show');
+
+    if (isShowing) {
+        const prevText = Text_Element.innerHTML;
+        Text_Element.innerHTML = prevText + '<br>' + Txt;
+    }
+    else
+    {
+        Title_Element.innerHTML = Tit;
+        Text_Element.innerHTML = Txt;
+    }
+    audio.currentTime = 0
+    audio.play();
     document.querySelector('.notify1').classList.add('Show');
 }
 function CloseNotify()
@@ -232,7 +249,7 @@ function GetBoBData() {
                 const ScN = document.getElementById("SchoolName");
                 BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
                 ScN.innerText = "알수없음!";
-                NotifyMes("오류!","식사 데이터를 받아올 수 없음! <br>시도교육청,행정표준 코드 확인 필요");
+                NotifyMes("오류!","• 식사 데이터를 받아올 수 없음!");
                 console.error('식사 데이터 없');
             }
         })
@@ -246,7 +263,10 @@ function getinput() {
     //시간 조정
     MoiTime = document.getElementById('MoitestDdayinput').value;
     TestTime = document.getElementById('testDdayinput').value;
-
+    if (MoiTime == "" ||  TestTime == "")
+    {
+        NotifyMes("알림","• D-Day 시간 지정되지 않음")
+    }
     //급식 학교 id
     시도교육청코드 = document.getElementById('시도교육청코드').value;
     행정표준코드 = document.getElementById('행정표준코드').value;
