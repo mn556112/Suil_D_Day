@@ -17,7 +17,7 @@ var okButton = document.querySelector('.notify-tile-okbutton');
 // 버튼에 클릭 이벤트 리스너를 추가
 okButton.addEventListener('click', function() {
   // 클릭되면 버튼에 'Hide' 클래스를 추가
-  document.querySelector('.notify1').classList.toggle('Show');
+  document.querySelector('.notify1').classList.remove('Show');
 });
 
 
@@ -25,9 +25,13 @@ function NotifyMes(Tit,Txt)
 {
     const Title_Element = document.getElementById("N_Title");
     const Text_Element = document.getElementById("N_Text");
-    Title_Element.innerText = Tit;
-    Text_Element.innerText = Txt;
-    document.querySelector('.notify1').classList.toggle('Show');
+    Title_Element.innerHTML = Tit;
+    Text_Element.innerHTML = Txt;
+    document.querySelector('.notify1').classList.add('Show');
+}
+function CloseNotify()
+{
+    document.querySelector('.notify1').classList.remove('Show');
 }
 
 //2D Bastard
@@ -47,6 +51,25 @@ if (BobIco) {
         }
     });
 }
+
+//suil 1st epic guy
+
+var oneicon = document.getElementById("A_one");
+var Imgs = document.getElementById("6D");
+var Count3 = 0;
+if (oneicon) {
+    oneicon.addEventListener("click", function () {
+        Count3 += 1;
+        if (Count3 >= 5) {
+            Count3 = 0;
+            Imgs.classList.toggle('show');
+            setTimeout(function () {
+                Imgs.classList.toggle('show');
+            }, 3170);
+        }
+    });
+}
+
 
 var TimerButton = document.getElementById("TimerButton");
 if (TimerButton) {
@@ -78,13 +101,23 @@ if (EsButton2) {
 
 var MoiTime = "2024-05-21";
 var TestTime = "2024-04-21";
-
+let preMin = 0;
 function calcDate(IsDetail, Type, idk) {
 
     if (idk === "GetCurrentTime") {
         const now = new Date(); // 현재 날짜 및 시간
         const hour = now.getHours().toString().padStart(2, '0'); // 시간을 가져오고 2의 자리수로 만들어주며, 1의 자리수면 앞에 0을 추가
         const minutes = now.getMinutes().toString().padStart(2, '0'); // 분을 가져오고 2의 자리수로 만들어주며, 1의 자리수면 앞에 0을 추가
+
+        if (preMin != minutes)
+        {
+            preMin = minutes
+            document.getElementById("CurrentTime").classList.toggle("Scale")
+            setTimeout(function() {
+                document.getElementById("CurrentTime").classList.toggle("Scale");
+            },50);
+        }
+
         return `${hour}:${minutes}`;
     }
 
@@ -199,7 +232,7 @@ function GetBoBData() {
                 const ScN = document.getElementById("SchoolName");
                 BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
                 ScN.innerText = "알수없음!";
-                NotifyMes("오류!","시도교육청,행정표준 코드 확인 필요");
+                NotifyMes("오류!","식사 데이터를 받아올 수 없음! <br>시도교육청,행정표준 코드 확인 필요");
                 console.error('식사 데이터 없');
             }
         })
@@ -254,6 +287,14 @@ function GetWeatherData(position) {
             temp.innerText = "온도 : " + data.main.temp + "°C";
             const WeatherInfo = data.weather[0].description;
             weather.innerText = "날씨 : " + WeatherInfo;
+
+            weather.classList.toggle("Scale");
+            temp.classList.toggle("Scale");
+            
+            setTimeout(function() {
+                weather.classList.toggle("Scale");
+                temp.classList.toggle("Scale");
+            },50);
         });
 }
 
@@ -286,6 +327,15 @@ function onGeoErr() {
                 temp.innerText = "온도 : " + data.main.temp + "°C";
                 const WeatherInfo = data.weather[0].description;
                 weather.innerText = "날씨 : " + WeatherInfo;
+
+                weather.classList.toggle("Scale");
+                WeatherInfo.classList.toggle("Scale");
+
+                setTimeout(function() {
+                    weather.classList.toggle("Scale");
+                    WeatherInfo.classList.toggle("Scale");
+                },50);
+
             });
 
         // 남은 시간 갱신
