@@ -349,11 +349,11 @@ function onGeoErr() {
                 weather.innerText = "날씨 : " + WeatherInfo;
 
                 weather.classList.toggle("Scale");
-                WeatherInfo.classList.toggle("Scale");
+                temp.classList.toggle("Scale");
 
                 setTimeout(function() {
                     weather.classList.toggle("Scale");
-                    WeatherInfo.classList.toggle("Scale");
+                    temp.classList.toggle("Scale");
                 },50);
 
             });
