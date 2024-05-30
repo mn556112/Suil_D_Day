@@ -208,9 +208,11 @@ function isScrollActive(element) {
 
 
 function adjustTextSizeToAvoidOverflow(element) {
-    let sz = 48
+    let sz = 300
+    element.style.fontSize = sz + "px";
     while (isScrollActive(element) == true) {
-        sz = sz - 0.1;
+        sz = sz - 1;
+        console.log('dd' + isScrollActive(element) )
         element.style.fontSize = sz + "px";
     }
 }
@@ -219,6 +221,11 @@ function adjustTextSizeToAvoidOverflow(element) {
 var 시도교육청코드 = "J10";
 var 행정표준코드 = "7530524";
 function GetBoBData() {
+    let BobList = document.getElementById("BobList");
+    BobList.innerHTML = ""
+    let LoadBar = document.getElementById("BobLoadingBar");
+    LoadBar.style.visibility = "visible"
+
     const 현재날짜 = getCurrentDate();
     console.log(시도교육청코드, 행정표준코드);
     const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=${시도교육청코드}&SD_SCHUL_CODE=${행정표준코드}&MLSV_YMD=${현재날짜}&KEY=${BoB_API_KEY}&Type=json`;
@@ -226,30 +233,25 @@ function GetBoBData() {
         .then(response => response.json())
         .then(data => {
             if (data.mealServiceDietInfo && data.mealServiceDietInfo[1] && data.mealServiceDietInfo[1].row && data.mealServiceDietInfo[1].row[0]) {
-                const mealData = data.mealServiceDietInfo[1].row[0];
+                LoadBar.style.visibility = "hidden"
 
+                const mealData = data.mealServiceDietInfo[1].row[0];
                 const ScN = document.getElementById("SchoolName");
                 ScN.innerText = mealData.SCHUL_NM;
 
-                const BobList = document.getElementById("BobList");
                 BobList.innerHTML = removeNumbersInParentheses(mealData.DDISH_NM); // trim() 함수를 사용하여 앞뒤 공백 제거
                 const Calo = document.getElementById("Cal");
                 Calo.innerText = "총 칼로리 : " + mealData.CAL_INFO;
                 const Bugeer = document.getElementById("buger");
                 Bugeer.innerText = "햄버거 약 " + BurgerCal(mealData.CAL_INFO) + "개의 칼로리";
-
                 //Text Scalling
-                if (isScrollActive(BobList)) {
-                    adjustTextSizeToAvoidOverflow(BobList);
-                    console.log('actived');
-                } else {
-                    console.log('disabled');
-                }
+                adjustTextSizeToAvoidOverflow(BobList);
             } else {
                 const ScN = document.getElementById("SchoolName");
                 BobList.innerHTML = "오류)시도교육청,행정표준 코드 확인 필요";
                 ScN.innerText = "알수없음!";
                 NotifyMes("오류!","• 식사 데이터를 받아올 수 없음!");
+                LoadBar.style.visibility = "hidden"
                 console.error('식사 데이터 없');
             }
         })
@@ -433,4 +435,39 @@ GetBoBData();
 setInterval(() => {
     GetBoBData();
 }, 3600000);
+
+
+function CheckSlav() {
+    const now = new Date(); // 현재 날짜 및 시간
+    const hour = now.getHours(); // 시간을 가져옴
+    const minutes = now.getMinutes(); // 분을 가져옴
+
+    // 현재 시간을 분 단위로 변환
+    const totalMinutes = hour * 60 + minutes;
+
+    const hinderElement = document.getElementById('Hinder');
+    const bobTitleElement = document.getElementById('Bob_Title');
+    const bobListElement = document.getElementById('BobList');
+
+    // 16시 50분(1010분) 이후 모니터 자동으로 꺼지게 하는 시간
+    if (totalMinutes >= 1010) {
+        hinderElement.classList.add('show');
+    } else if (totalMinutes >= 530 && totalMinutes < 1010) { // 8시 50분부터 16시 50분 사이
+        hinderElement.classList.remove('show');
+    }
+
+    // 14시(840분) 이후 청소시간
+    if (totalMinutes >= 840) {
+        bobTitleElement.innerText = "오늘 청소";
+        bobListElement.innerHTML = "정보<br> 없음";
+        adjustTextSizeToAvoidOverflow(bobListElement);
+    } else { // 그 외의 시간은 급식 정보 표시
+        bobTitleElement.innerText = "오늘 급식";
+    }
+}
+
+//청소 리스트
+setInterval(() => {
+    CheckSlav();
+}, 1000); //1초마다 반복
 
