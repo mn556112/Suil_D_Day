@@ -432,12 +432,13 @@
 }
 .boblist {
   top: calc(50% - 131.4px);
-  left: calc(50% - 233.7px);
+  left: calc(50% - 245.9px);
   font-weight: 400;
-  width: 445px;
-  height: 373.6px;
+  width: 465px;
+  height: 393.6px;
   font-size: 48px;
   color: #424242;
+  overflow: auto;
 }
 .b3 {
   top: calc(50% - 14.25px);
@@ -853,6 +854,20 @@
   transition: all 2s ease;
 }
 
+.Hinder {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: all 4s ease;
+}
+
+.Hinder.show {
+  visibility: visible;
+  opacity: 1;
+}
 .ezpz_one.show {
   visibility: visible;
   opacity: 1;
@@ -1013,4 +1028,27 @@
 .notify1.Hide {
   visibility: hidden;
   opacity: 0;
+}
+
+
+
+/* 원형 프로그래스바 */
+
+.loading {
+  visibility: hidden;
+  position: absolute;
+  top: calc(58%);
+  left: calc(48%);
+  width: 100px;
+  height: 100px;
+  border: 10px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 0.4s infinite cubic-bezier(0.55, 0.15, 0.45, 0.85);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
 }
