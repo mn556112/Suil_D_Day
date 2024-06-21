@@ -345,6 +345,7 @@
   left: calc(50% - 76.5px);
   width: 737.5px;
   height: 293px;
+  transition: all 0.2s ease;
 }
 .d-day1 {
   top: calc(50% - 33.35px);
@@ -413,6 +414,7 @@
   left: calc(50% - 85px);
   width: 739px;
   height: 304px;
+  transition: all 0.2s ease;
 }
 .bob-child {
   position: absolute;
@@ -1051,4 +1053,80 @@
 @keyframes spin {
   0% { transform: translate(-50%,-50%) rotate(0deg); }
   100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+
+
+.ai-child {
+  top: 125px;
+  border-radius: 37px;
+  background-color: var(--color-gainsboro-200);
+  width: 735px;
+  height: 515px;
+}
+.ai-chat,
+.chatgpt1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-chat {
+  top: calc(50% - 167px);
+  left: calc(50% - 327.5px);
+  font-weight: 300;
+  width: 657px;
+  height: 461px;
+}
+.chatgpt1 {
+  top: calc(50% - 30.5px);
+  left: calc(50% - 138.5px);
+  width: 395px;
+  height: 77px;
+}
+.icon-ai {
+  top: 0;
+  left: 0;
+  width: 135px;
+  height: 125px;
+  overflow: hidden;
+}
+.ai,
+.icon-ai,
+.title-ai {
+  position: absolute;
+}
+.title-ai {
+  top: calc(50% - 320px);
+  left: calc(50% - 367.5px);
+  width: 513px;
+  height: 125px;
+  font-size: 64px;
+  color: var(--color-darkslategray-200);
+}
+.ai {
+  top: 3px;
+  left: 571px;
+  width: 735px;
+  height: 640px;
+  font-size: var(--font-size-29xl);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.ai-child,
+.bob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 533.4px;
+  height: 643px;
+}
+
+.ai-child {
+  top: 125px;
+  border-radius: 37px;
+  background-color: var(--color-gainsboro-200);
+  width: 735px;
+  height: 515px;
 }

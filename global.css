@@ -27,6 +27,7 @@ body {
   --color-darkslategray-300: #353535;
   --color-darkslategray-400: #303030;
   --color-whitesmoke: #f2f2f2;
+  --color-gainsboro-200: #d9d9d9;
 
   /* Paddings */
   --padding-5xs: 8px;
