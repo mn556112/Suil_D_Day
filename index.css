@@ -1050,11 +1050,26 @@
   transform: translate(-50%, -50%);
 }
 
+
+.loading_ai {
+  visibility: hidden;
+  position: absolute;
+  top: calc(48%);
+  left: calc(50%);
+  width: 60px;
+  height: 60px;
+  border: 7px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 0.3s infinite cubic-bezier(0.55, 0.15, 0.45, 0.95);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
 @keyframes spin {
   0% { transform: translate(-50%,-50%) rotate(0deg); }
   100% { transform: translate(-50%,-50%) rotate(360deg); }
 }
-
 
 
 .ai-child {
