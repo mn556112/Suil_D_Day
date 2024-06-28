@@ -449,11 +449,31 @@ function CheckSlav() {
     const bobTitleElement = document.getElementById('Bob_Title');
     const bobListElement = document.getElementById('BobList');
 
+    // ai
+    const AI = document.getElementById('AI_com');
+    const Dday_M = document.getElementById('D-Day1');
+    const Dday_S = document.getElementById('D-Day2');
+    const LoadingBar_ai = document.getElementById('LoadingBar_ai');
+
     // 16시 50분(1010분) 이후 모니터 자동으로 꺼지게 하는 시간
     if (totalMinutes >= 1010) {
         hinderElement.classList.add('show');
     } else if (totalMinutes >= 530 && totalMinutes < 1010) { // 8시 50분부터 16시 50분 사이
         hinderElement.classList.remove('show');
+    }
+
+    if (totalMinutes >= 780 && totalMinutes <= 840) { //13 ~ 14
+        Dday_M.style.opacity = 0;
+        Dday_S.style.opacity = 0;
+        AI.style.opacity = 1;
+        LoadingBar_ai.style.visibility = "visible";
+    }
+    else
+    {
+        Dday_M.style.opacity = 1;
+        Dday_S.style.opacity = 1;
+        AI.style.opacity = 0;
+        LoadingBar_ai.style.visibility = "hidden";
     }
 
     // 14시(840분) 이후 청소시간
