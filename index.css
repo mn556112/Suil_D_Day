@@ -321,7 +321,7 @@
   position: absolute;
 }
 .oo-oo-oo {
-  top: calc(50% + 95.5px);
+  top: calc(50% + 55.5px);
   left: calc(50% + 90.75px);
   font-size: 80px;
   letter-spacing: 0.01em;
@@ -391,7 +391,7 @@
   height: 180.5px;
 }
 .oo-oo-oo1 {
-  top: calc(50% + 97px);
+  top: calc(50% + 67px);
   left: calc(50% + 91.5px);
   font-size: 80px;
   letter-spacing: 0.01em;
