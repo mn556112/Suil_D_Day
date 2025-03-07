@@ -336,7 +336,7 @@ function onGeoOk(position) {
 
 
 function onGeoErr() {
-    //alert("위치권한 내놔")
+    NotifyMes("오류","위치 정보 받아 올 수 없음음")
     //함수로 만들기 귀찮
 
     setInterval(() => {
@@ -436,7 +436,7 @@ setInterval(() => {
     GetBoBData();
 }, 3600000);
 
-
+var SleepModeEnabled = true
 function CheckSlav() {
     const now = new Date(); // 현재 날짜 및 시간
     const hour = now.getHours(); // 시간을 가져옴
@@ -456,9 +456,13 @@ function CheckSlav() {
     const LoadingBar_ai = document.getElementById('LoadingBar_ai');
 
     // 16시 50분(1010분) 이후 모니터 자동으로 꺼지게 하는 시간
-    if (totalMinutes >= 1010) {
-        hinderElement.classList.add('show');
-    } else if (totalMinutes >= 530 && totalMinutes < 1010) { // 8시 50분부터 16시 50분 사이
+    if (SleepModeEnabled == true) {
+        if (totalMinutes >= 1010) {
+            hinderElement.classList.add('show');
+        } else if (totalMinutes >= 530 && totalMinutes < 1010) { // 8시 50분부터 16시 50분 사이
+            hinderElement.classList.remove('show');
+        }   
+    } else {
         hinderElement.classList.remove('show');
     }
 
@@ -485,6 +489,20 @@ function CheckSlav() {
         bobTitleElement.innerText = "오늘 급식";
     }
 }
+
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 's') {
+         event.preventDefault(); 
+         if (SleepModeEnabled == true) {
+            SleepModeEnabled = false
+            NotifyMes("알림","• 수면모드 비활성화")
+         } else {
+            SleepModeEnabled = true
+            NotifyMes("알림","• 수면모드 활성화")
+         }
+
+    }
+    });
 
 //청소 리스트
 setInterval(() => {
