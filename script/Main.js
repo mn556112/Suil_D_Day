@@ -27,6 +27,13 @@ NotifyBack.addEventListener('click', function() {
     document.querySelector('.notify1').classList.remove('Show');
 });
 
+function CloseNotify()
+{
+    document.querySelector('.notify1').classList.remove('Show');
+}
+
+var closecooldown;
+var interval
 function NotifyMes(Tit,Txt)
 {
     const Title_Element = document.getElementById("N_Title");
@@ -45,12 +52,23 @@ function NotifyMes(Tit,Txt)
     audio.currentTime = 0
     audio.play();
     document.querySelector('.notify1').classList.add('Show');
-}
-function CloseNotify()
-{
-    document.querySelector('.notify1').classList.remove('Show');
-}
 
+    clearInterval(interval); //여러번 반복되는거 방지
+    closecooldown = 10;
+    okButton.innerText = "확인 <" + closecooldown + ">";
+    
+    interval = setInterval(function() {
+        closecooldown--;
+        if (closecooldown >= 0) {
+            okButton.innerText = "확인 <" + closecooldown + ">";
+        }
+        else
+        {
+            clearInterval(interval);
+            document.querySelector('.notify1').classList.remove('Show');
+        }
+    }, 1000);
+}
 //2D Bastard
 
 var BobIco = document.getElementById("BobIco");
