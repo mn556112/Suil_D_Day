@@ -473,6 +473,9 @@ function CheckSlav() {
     const Dday_S = document.getElementById('D-Day2');
     const LoadingBar_ai = document.getElementById('LoadingBar_ai');
 
+
+
+    let LoadBar = document.getElementById("BobLoadingBar");
     // 16시 50분(1010분) 이후 모니터 자동으로 꺼지게 하는 시간
     if (SleepModeEnabled == true) {
         if (totalMinutes >= 1010) {
@@ -502,6 +505,8 @@ function CheckSlav() {
     if (totalMinutes >= 840) {
         bobTitleElement.innerText = "오늘 청소";
         bobListElement.innerHTML = "정보<br> 없음";
+        LoadBar.style.visibility = "hidden"
+
         adjustTextSizeToAvoidOverflow(bobListElement);
     } else { // 그 외의 시간은 급식 정보 표시
         bobTitleElement.innerText = "오늘 급식";
